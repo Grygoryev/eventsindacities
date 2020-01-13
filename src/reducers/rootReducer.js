@@ -1,21 +1,44 @@
-import data from '../data.json'
 import events from '../events.json'
 
 const initeState = {
-  // posts: [...data],
   events: [...events],
   favouriteEvents: []
 }
 
 const rootReducer = (state = initeState, action) => {
-  if (action.type === 'DELETE_POST') {
-    let newPosts = state.posts.filter(post => {
-      return action.id !== post.id
+  if (action.type === 'DELETE_EVENT') {
+    let newEvents = state.events.filter(event => {
+      return action.id !== event.id
     })
     
     return {
       ...state,
-      posts: newPosts
+      events: newEvents
+    }
+  }
+
+  if (action.type == 'SET_DEFAULT') {
+    return {
+      ...state,
+      events
+    }
+  }
+
+  if (action.type == 'SORT_PRICE_TO_UP') {
+    /* --under construction-- */
+    return {
+      ...state
+      // events: sortedToUpEvents
+    }
+  }
+
+  if (action.type == 'SORT_PRICE_TO_DOWN') {
+    /* --under construction-- */
+  
+
+    return {
+      ...state
+      // events: sortedToDownEvents
     }
   }
 
@@ -31,5 +54,3 @@ const rootReducer = (state = initeState, action) => {
 }
 
 export default rootReducer
-
-// console.log(initeState)

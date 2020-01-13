@@ -1,3 +1,12 @@
+p {
+  margin: 0 10px;
+}
+
+img {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
 .events-container {
   padding-top: 50px;
 }
@@ -5,8 +14,8 @@
 .event-card {
   position: relative;
   transition: 300ms all;
-  padding: 20px 20px 20px 50px;
-  margin-bottom: 30px;
+  padding: 30px 25px;
+  margin-bottom: 15px;
   box-shadow: 0 0 3px 0px rgba(0,0,0,0.1);
 }
 .event-card:hover {
@@ -22,4 +31,12 @@
 
 .event-card__to-favourite-action:hover {
   text-decoration: underline;
+}
+
+.filter-panel__option {
+  text-decoration: underline;
+  display: inline-block;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
 }
