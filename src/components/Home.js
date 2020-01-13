@@ -1,51 +1,50 @@
 import React, { Component } from 'react'
-import axios from 'axios'
 import { Link } from 'react-router-dom'
-import Logo from '../logo.svg'
+import { connect } from 'react-redux'
+import FilterPanel from './filterPanel'
 
-class Home extends Component{
-  constructor() {
-    super()
-    this.state = {
-      posts: []
-    }
-  }
-
-  componentDidMount() {
-    axios.get('https://jsonplaceholder.typicode.com/posts')
-      .then(response => {
-        this.setState({
-          posts: response.data.slice(0, 15)
-        })
-      })
-  } 
+class Home extends Component {
 
   render() {
-    const { posts } = this.state
-    const postList = posts.length ? ( 
-      posts.map( post => {
+    const { events } = this.props
+    const eventsList = events.length ? ( 
+      events.map( event => {
+        let eventPrice = event.price == 0 ? 'Бесплатно' : event.price
+        let eventCategories = event.categories.join(' ')
+
         return (
-          <div className="post card" key={post.id}>
-            <img src={Logo} alt="Logo" />
-            <div className="card-content">
-              <Link to={'/' + post.id}>
-                <span className="card-title">{post.title}</span>
-              </Link>
-              <p>{post.body}</p>
-            </div>
+          <div className="post event-card card" key={event.id}> 
+            <p className="event-card__to-favourite-action">
+              В избранное  
+            </p> 
+            <Link to={'/' + event.id}>
+              <div className="event-content">
+                <h5 className="card-title">{event.title}</h5>
+                <div className="card-content__info">
+                  <p className="price"><b>Стоимость:</b> { eventPrice } </p>
+                  <p className="category"><b>Метки: </b> { eventCategories } </p>
+                </div>
+              </div>
+            </Link>
           </div>
-        )
-      })
-    ) : (
-      <div className="center"> No posts yet </div>
-    )
+        )})
+      ) : (
+        <div className="center"> No posts yet </div>
+      )
+   
     return (
-      <div className="container">
-        <h4 className="center">Home</h4>
-        <div>{postList}</div>
+      <div className="container events-container">
+        <FilterPanel />
+        <div>{eventsList}</div>
       </div>
     )
   }
 }
 
-export default Home
+const mapStateToProps = (state) => {
+  return {
+    events: state.events
+  }
+}
+
+export default connect(mapStateToProps)(Home)
