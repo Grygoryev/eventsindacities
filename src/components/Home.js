@@ -1,27 +1,17 @@
 import React, { Component } from 'react'
-import axios from 'axios'
 import { Link } from 'react-router-dom'
 import Logo from '../logo.svg'
+import { connect } from 'react-redux'
 
 class Home extends Component{
   constructor() {
     super()
-    this.state = {
-      posts: []
-    }
   }
 
-  componentDidMount() {
-    axios.get('https://jsonplaceholder.typicode.com/posts')
-      .then(response => {
-        this.setState({
-          posts: response.data.slice(0, 15)
-        })
-      })
-  } 
 
   render() {
-    const { posts } = this.state
+    console.log(this.props)
+    const { posts } = this.props
     const postList = posts.length ? ( 
       posts.map( post => {
         return (
@@ -29,9 +19,9 @@ class Home extends Component{
             <img src={Logo} alt="Logo" />
             <div className="card-content">
               <Link to={'/' + post.id}>
-                <span className="card-title">{post.title}</span>
+                <span className="card-title">{post.name}</span>
               </Link>
-              <p>{post.body}</p>
+              <p>{post.message}</p>
             </div>
           </div>
         )
@@ -48,4 +38,10 @@ class Home extends Component{
   }
 }
 
-export default Home
+const mapStateToProps = (state) => {
+  return {
+    posts: state.posts
+  }
+}
+
+export default connect(mapStateToProps)(Home)
