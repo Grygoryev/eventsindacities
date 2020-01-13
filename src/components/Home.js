@@ -3,44 +3,47 @@ import { Link } from 'react-router-dom'
 import Logo from '../logo.svg'
 import { connect } from 'react-redux'
 
-class Home extends Component{
-  constructor() {
-    super()
-  }
-
+class Home extends Component {
 
   render() {
-    console.log(this.props)
-    const { posts } = this.props
-    const postList = posts.length ? ( 
-      posts.map( post => {
+    const { events } = this.props
+    const eventsList = events.length ? ( 
+      events.map( event => {
+        let eventPrice = event.isFree ? 'Бесплатно' : event.price
+        let eventCategories = event.categories.join(' ')
+
         return (
-          <div className="post card" key={post.id}>
-            <img src={Logo} alt="Logo" />
-            <div className="card-content">
-              <Link to={'/' + post.id}>
-                <span className="card-title">{post.name}</span>
-              </Link>
-              <p>{post.message}</p>
-            </div>
+          <div className="post event-card card" key={event.id}> 
+            <p className="event-card__to-favourite-action">
+              В избранное  
+            </p> 
+            <Link to={'/' + event.id}>
+              <div className="card-content">
+                <h3 className="card-title">{event.title}</h3>
+                <p>{event.description}</p>
+                <div className="card-content__info">
+                  <p className="price"><b>Стоимость:</b> { eventPrice }</p>
+                  <p className="category"><b>Метки: </b>{ eventCategories }</p>
+                </div>
+              </div>
+            </Link>
           </div>
+          )})
+        ) : (
+          <div className="center"> No posts yet </div>
         )
-      })
-    ) : (
-      <div className="center"> No posts yet </div>
-    )
     return (
-      <div className="container">
-        <h4 className="center">Home</h4>
-        <div>{postList}</div>
+      <div className="container events-container">
+        <div>{eventsList}</div>
       </div>
     )
   }
 }
 
 const mapStateToProps = (state) => {
+  console.log(state.events)
   return {
-    posts: state.posts
+    events: state.events
   }
 }
 

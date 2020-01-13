@@ -1,7 +1,10 @@
-import data from '../data.json';
+import data from '../data.json'
+import events from '../events.json'
 
 const initeState = {
-  posts: [...data]
+  // posts: [...data],
+  events: [...events],
+  favouriteEvents: []
 }
 
 const rootReducer = (state = initeState, action) => {
@@ -15,9 +18,18 @@ const rootReducer = (state = initeState, action) => {
       posts: newPosts
     }
   }
+
+  if (action.type === 'ADD_TO_FAVOURITES') {
+    let favouriteEvents = state.events.filter(event => event.isFavourite)
+    return {
+      ...state,
+      favouriteEvents
+    }
+  }
+
   return state
 }
 
 export default rootReducer
 
-console.log(initeState)
+// console.log(initeState)

@@ -1,12 +1,25 @@
-.post img {
-  position: absolute;
-  top: 20px;
-  left: -35px;
-  opacity: 0.6;
-  width: 25%;
+.events-container {
+  padding-top: 50px;
 }
 
-.post {
-  overflow: hidden;
-  padding-left: 80px;
+.event-card {
+  position: relative;
+  transition: 300ms all;
+  padding: 20px 20px 20px 50px;
+  margin-bottom: 30px;
+  box-shadow: 0 0 3px 0px rgba(0,0,0,0.1);
+}
+.event-card:hover {
+  box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.1);
+}
+
+.event-card__to-favourite-action {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  cursor: pointer;
+}
+
+.event-card__to-favourite-action:hover {
+  text-decoration: underline;
 }

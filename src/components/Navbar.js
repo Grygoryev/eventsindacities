@@ -1,12 +1,12 @@
 import React from 'react'
-import { Link, NavLink, withRouter } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 
 const Navbar = (props) => {
 
   return (
-    <nav className="nav-wrppaer red darken-3">
+    <nav className="nav-wrppaer blue lighten-1">
       <div className="container">
-        <a className="brand-logo">Let's start</a>
+        <a href='/' className="brand-logo">События в городе</a>
         <ul className="right">
           <li><NavLink to="/">Home</NavLink></li>
           <li><NavLink to="/about">About</NavLink></li>

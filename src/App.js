@@ -6,6 +6,7 @@ import About from './components/About';
 import Contact from './components/Contact';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Post from './components/Post';
+import Event from './components/Event'
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
           <Route exact path="/" component={Home} />
           <Route path="/about" component={About} />
           <Route path="/contact" component={Contact} />
-          <Route path="/:post_id" component={Post} />
+          <Route path="/:event_id" component={Event} />
         </Switch>
       </div>
     </BrowserRouter>
