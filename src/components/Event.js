@@ -38,7 +38,6 @@ class Event extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   let id = ownProps.match.params.event_id
-  console.log(ownProps)
   return {
     event: state.events.find(event => id == event.id)
   }

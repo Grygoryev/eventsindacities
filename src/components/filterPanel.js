@@ -25,16 +25,7 @@ class FilterPanel extends Component {
   }
 
   render() { 
-    console.log(this.props.events)
-
-    const labels = []
     
-    this.props.events.map( event => {
-      if (!labels.includes(event.categories)) {
-        
-      }
-    })
-
     return (
       <div className="filter-panel">
         <h6>Сортировать по:</h6>

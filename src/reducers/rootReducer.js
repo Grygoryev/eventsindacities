@@ -28,6 +28,7 @@ const rootReducer = (state = initeState, action) => {
 
   if (action.type === 'ADD_FAVOURITE') {
     let newOne = state.events.find(event => event.id == action.id)
+    newOne.isFavourite = !newOne.isFavourite
     let newFavouriteEvents = state.favouriteEvents.filter(event => event.id != newOne.id)
     
     return {
@@ -37,6 +38,8 @@ const rootReducer = (state = initeState, action) => {
   }
 
   if (action.type === 'REMOVE_FAVOURITE') {
+    let target = state.events.find(event => event.id == action.id)
+    target.isFavourite = !target.isFavourite
     let newFavouriteEvents = state.favouriteEvents.filter(event => action.id != event.id)
 
     return {

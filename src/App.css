@@ -1,5 +1,5 @@
 p {
-  margin: 0 10px;
+  margin: 0 10px 0 0;
 }
 
 a {
@@ -34,7 +34,7 @@ img {
 
 .favourite-controls {
   position: absolute;
-  top: 10px;
+  top: 20px;
   right: 20px;
   cursor: pointer;
 }
@@ -52,10 +52,36 @@ img {
   cursor: pointer;
 }
 
+.filter-panel h6 {
+  margin-bottom: 15px;
+}
+
 .event-tag:hover {
   text-decoration: underline;
 }
 
 .event-card.--favourite {
-  border: 2px solid rgb(241, 214, 59);
+  border: 2px solid #ffc107;
+}
+
+.event-card.--favourite .star-icon {
+  fill: #ffc107;
+}
+
+.event-card.--favourite .favourite-controls__option {
+  color: #ffc107;
+}
+
+/* .star-icon:hover {
+  fill: #ffc107;
+} */
+
+.star-icon {
+  /* position: absolute;
+  top: 15px;
+  right: 15px; */
+  fill: black;
+  width: 40px;
+  height: 40px;
+  transition: 200ms all;
 }
