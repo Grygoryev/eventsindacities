@@ -15,6 +15,17 @@ const rootReducer = (state = initeState, action) => {
     }
   }
 
+  if (action.type === 'FILTER_BY_CATEGORY') {
+    let newList = state.events.filter( event => {
+      return event.categories.includes(action.categoryName)
+    })
+    
+    return {
+      ...state,
+      events: newList
+    }
+  }
+
   if (action.type === 'ADD_FAVOURITE') {
     let newOne = state.events.find(event => event.id == action.id)
     let newFavouriteEvents = state.favouriteEvents.filter(event => event.id != newOne.id)

@@ -4,6 +4,7 @@ import { sortPriceToUp } from '../actions/eventActions'
 import { sortPriceToDown } from '../actions/eventActions'
 import { setDefault } from '../actions/eventActions'
 import { showFavourites } from '../actions/eventActions'
+import { chooseCategory } from '../actions/eventActions'
 
 class FilterPanel extends Component {
 
@@ -24,7 +25,16 @@ class FilterPanel extends Component {
   }
 
   render() { 
-    console.log(this.props)
+    console.log(this.props.events)
+
+    const labels = []
+    
+    this.props.events.map( event => {
+      if (!labels.includes(event.categories)) {
+        
+      }
+    })
+
     return (
       <div className="filter-panel">
         <h6>Сортировать по:</h6>
@@ -40,7 +50,7 @@ class FilterPanel extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    events: state
+    events: state.events
   }
 }
 
@@ -49,7 +59,8 @@ const mapDispatchToProps = (dispatch) => {
     sortPriceToUp: () => { dispatch(sortPriceToUp()) },
     sortPriceToDown: () => { dispatch(sortPriceToDown()) },
     setDefault: () => { dispatch(setDefault()) },
-    showFavourites: () => {dispatch(showFavourites()) }
+    showFavourites: () => { dispatch(showFavourites()) },
+    chooseCategory: () => { dispatch(chooseCategory()) }
   }
 } 
 

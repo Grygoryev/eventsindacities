@@ -5,6 +5,13 @@ export const deleteEvent = id => {
   }
 }
 
+export const filterByCategory = categoryName => {
+  return {
+    type: 'FILTER_BY_CATEGORY',
+    categoryName
+  }
+}
+
 export const addToFavourite = id => {
   return {
     type: 'ADD_FAVOURITE',
@@ -40,5 +47,11 @@ export const sortPriceToUp = () => {
 export const sortPriceToDown = () => {
   return {
     type: 'SORT_PRICE_TO_DOWN'
+  }
+}
+
+export const chooseCategory = () => {
+  return {
+    type: 'CHOOSE_CATEGORY'
   }
 }

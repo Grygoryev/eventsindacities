@@ -20,18 +20,10 @@ class Event extends Component {
     const event = this.props.event ? (
       <div className="post">
         <h4 className="post-title">{this.props.event.title}</h4>
-          <button className='btn green' onClick={this.handleAddingFavourite}>
-            Add to Favourite
-          </button>
         <p>{eventImage}</p>
         <p>{this.props.event.description}</p>
         <h5>Описание: </h5>
         <p>{this.props.event.body}</p>
-        <div className="center">
-          <button className='btn grey' onClick={this.handleDelete}>
-            Delete post
-          </button>
-        </div>
       </div>
     ) : (
       <div> loading post... </div>

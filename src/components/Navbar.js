@@ -4,9 +4,9 @@ import { NavLink, withRouter } from 'react-router-dom';
 const Navbar = (props) => {
 
   return (
-    <nav className="nav-wrppaer blue lighten-1">
+    <nav className="nav-wrppaer purple">
       <div className="container">
-        <a href='/' className="brand-logo">События в городе</a>
+        <a href='/' className="brand-logo">what's around</a>
         <ul className="right">
           <li><NavLink to="/">Home</NavLink></li>
         </ul>
