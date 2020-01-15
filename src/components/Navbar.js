@@ -9,8 +9,6 @@ const Navbar = (props) => {
         <a href='/' className="brand-logo">События в городе</a>
         <ul className="right">
           <li><NavLink to="/">Home</NavLink></li>
-          <li><NavLink to="/about">About</NavLink></li>
-          <li><NavLink to="/contact">Contact</NavLink></li>
         </ul>
       </div>
     </nav>

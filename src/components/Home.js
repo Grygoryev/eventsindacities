@@ -2,21 +2,36 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import FilterPanel from './filterPanel'
+import { addToFavourite } from '../actions/eventActions'
+import { removeFavourite } from '../actions/eventActions'
 
 class Home extends Component {
+
+  addToFavourite = (e) => {
+    this.props.addToFavourite(e.target.id)
+  }
+
+  removeFavourite = (e) => {
+    this.props.removeFavourite(e.target.id)
+  }
 
   render() {
     const { events } = this.props
     const eventsList = events.length ? ( 
       events.map( event => {
-        let eventPrice = event.price == 0 ? 'Бесплатно' : event.price
+        let eventPrice = event.price === 0 ? 'Бесплатно' : event.price
         let eventCategories = event.categories.join(' ')
 
         return (
           <div className="post event-card card" key={event.id}> 
-            <p className="event-card__to-favourite-action">
-              В избранное  
-            </p> 
+            <div className="favourite-controls">
+                <div className="favourite-controls__option" onClick={this.addToFavourite} id={event.id}>
+                  Добавить в избранное  
+                </div> 
+                <div className="favourite-controls__option" onClick={this.removeFavourite} id={event.id}>
+                  Удалить из избранного
+                </div>
+            </div>
             <Link to={'/' + event.id}>
               <div className="event-content">
                 <h5 className="card-title">{event.title}</h5>
@@ -42,9 +57,17 @@ class Home extends Component {
 }
 
 const mapStateToProps = (state) => {
+  console.log(state)
   return {
     events: state.events
   }
 }
 
-export default connect(mapStateToProps)(Home)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addToFavourite: id => { dispatch(addToFavourite(id)) },
+    removeFavourite: id => { dispatch(removeFavourite(id)) }
+  }
+} 
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home)

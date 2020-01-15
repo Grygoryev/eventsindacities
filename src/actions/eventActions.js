@@ -7,8 +7,21 @@ export const deleteEvent = id => {
 
 export const addToFavourite = id => {
   return {
-    type: 'ADD_TO_FAVOURITE',
+    type: 'ADD_FAVOURITE',
     id
+  }
+}
+
+export const removeFavourite = id => {
+  return {
+    type: 'REMOVE_FAVOURITE',
+    id
+  }
+}
+
+export const showFavourites = () => {
+  return {
+    type: 'SHOW_FAVOURITES'
   }
 }
 

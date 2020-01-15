@@ -7,13 +7,39 @@ const initeState = {
 
 const rootReducer = (state = initeState, action) => {
   if (action.type === 'DELETE_EVENT') {
-    let newEvents = state.events.filter(event => {
-      return action.id !== event.id
-    })
+    let newEvents = state.events.filter(event => action.id !== event.id)
     
     return {
       ...state,
       events: newEvents
+    }
+  }
+
+  if (action.type === 'ADD_FAVOURITE') {
+    let newOne = state.events.find(event => event.id == action.id)
+    let newFavouriteEvents = state.favouriteEvents.filter(event => event.id != newOne.id)
+    
+    return {
+      ...state,
+      favouriteEvents: [...newFavouriteEvents, newOne]
+    }
+  }
+
+  if (action.type === 'REMOVE_FAVOURITE') {
+    let newFavouriteEvents = state.favouriteEvents.filter(event => action.id != event.id)
+
+    return {
+      ...state,
+      favouriteEvents: newFavouriteEvents
+    }
+  }
+
+  if (action.type === 'SHOW_FAVOURITES') {
+    let favouriteEvents = state.favouriteEvents
+
+    return {
+      ...state,
+      events: favouriteEvents
     }
   }
 
@@ -25,28 +51,21 @@ const rootReducer = (state = initeState, action) => {
   }
 
   if (action.type == 'SORT_PRICE_TO_UP') {
-    /* --under construction-- */
+    let sortedToUpEvents = state.events.sort( (a, b) => a.price - b.price )
+    let newArr = sortedToUpEvents.slice(0) /* создаю новый массив, так как предыдущая запись только изменяет старый */
     return {
-      ...state
-      // events: sortedToUpEvents
+      ...state,
+      events: newArr
     }
   }
 
   if (action.type == 'SORT_PRICE_TO_DOWN') {
-    /* --under construction-- */
-  
+    let sortedToDownEvents = state.events.sort( (a, b) => b.price - a.price)
+    let newArr = sortedToDownEvents.slice(0)
 
-    return {
-      ...state
-      // events: sortedToDownEvents
-    }
-  }
-
-  if (action.type === 'ADD_TO_FAVOURITES') {
-    let favouriteEvents = state.events.filter(event => event.isFavourite)
     return {
       ...state,
-      favouriteEvents
+      events: newArr
     }
   }
 

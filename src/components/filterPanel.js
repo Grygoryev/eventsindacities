@@ -3,10 +3,9 @@ import { connect } from 'react-redux';
 import { sortPriceToUp } from '../actions/eventActions'
 import { sortPriceToDown } from '../actions/eventActions'
 import { setDefault } from '../actions/eventActions'
-
+import { showFavourites } from '../actions/eventActions'
 
 class FilterPanel extends Component {
-
 
   handlePriceUp = () => {
     this.props.sortPriceToUp()
@@ -20,27 +19,28 @@ class FilterPanel extends Component {
     this.props.setDefault()
   }
 
-  showFavouriteEvents = () => {
-    this.props.showFavouriteEvents()
+  showFavourites = () => {
+    this.props.showFavourites()
   }
 
   render() { 
-
+    console.log(this.props)
     return (
       <div className="filter-panel">
-        <b>Сортировать по:</b>
-        <span className="filter-panel__option" onClick={this.handlePriceDown}>Убыванию цены</span>
-        <span className="filter-panel__option" onClick={this.handlePriceUp}>Возрастанию цены</span>
-        <span className="filter-panel__option" onClick={this.showFavourite}>Избранное</span>
-        <span className="filter-panel__option" onClick={this.handleDefault}>Сбросить сортировку</span>
+        <h6>Сортировать по:</h6>
+        <div className="filter-panel__options">
+          <span className="filter-panel__option" onClick={this.handlePriceDown}>Убыванию цены</span>
+          <span className="filter-panel__option" onClick={this.handlePriceUp}>Возрастанию цены</span>
+          <span className="filter-panel__option" onClick={this.showFavourites}>Избранное</span>
+          <span className="filter-panel__option" onClick={this.handleDefault}>Сбросить сортировку</span>
+        </div>
       </div>
     )}
 }
 
 const mapStateToProps = (state) => {
-  console.log(state)
   return {
-    events: state.events
+    events: state
   }
 }
 
@@ -48,7 +48,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     sortPriceToUp: () => { dispatch(sortPriceToUp()) },
     sortPriceToDown: () => { dispatch(sortPriceToDown()) },
-    setDefault: () => { dispatch(setDefault()) }
+    setDefault: () => { dispatch(setDefault()) },
+    showFavourites: () => {dispatch(showFavourites()) }
   }
 } 
 

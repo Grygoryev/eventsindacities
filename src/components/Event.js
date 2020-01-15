@@ -1,14 +1,17 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { addToFavourites } from '../actions/eventActions'
 import { deleteEvent } from '../actions/eventActions'
+import { addToFavourite } from '../actions/eventActions'
 
 class Event extends Component {
 
-  
-
   handleDelete = () => {
     this.props.deleteEvent(this.props.event.id)
+    this.props.history.push('/')
+  }
+
+  handleAddingFavourite = () => {
+    this.props.addToFavourite(this.props.event.id)
     this.props.history.push('/')
   }
 
@@ -17,6 +20,9 @@ class Event extends Component {
     const event = this.props.event ? (
       <div className="post">
         <h4 className="post-title">{this.props.event.title}</h4>
+          <button className='btn green' onClick={this.handleAddingFavourite}>
+            Add to Favourite
+          </button>
         <p>{eventImage}</p>
         <p>{this.props.event.description}</p>
         <h5>Описание: </h5>
@@ -40,6 +46,7 @@ class Event extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   let id = ownProps.match.params.event_id
+  console.log(ownProps)
   return {
     event: state.events.find(event => id == event.id)
   }
@@ -47,7 +54,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    deleteEvent: id => { dispatch(deleteEvent(id)) }
+    deleteEvent: id => { dispatch(deleteEvent(id)) },
+    addToFavourite: id => { dispatch(addToFavourite(id) )}
   }
 } 
 
